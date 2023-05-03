@@ -39,7 +39,7 @@ const posts = [
         "media": "https://unsplash.it/600/400?image=24",
         "author": {
             "name": "Luca Formicola",
-            "image": null
+            "image": "https://unsplash.it/300/300?image=20"
         },
         "likes": 56,
         "created": "2021-04-03"
@@ -91,3 +91,4 @@ for(let i = 0; i < posts.length; i++ ) {
             </div>            
         </div>`
 }
+
