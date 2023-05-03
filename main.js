@@ -59,8 +59,9 @@ const posts = [
 
 const elePost = document.querySelector('.posts-list');
 
-for(let i = 0; i < posts.length; i++ ) {
-    elePost.innerHTML += `<div class="post">
+for (let i = 0; i < posts.length; i++) {
+    elePost.innerHTML +=
+        `<div class="post">
             <div class="post__header">
                 <div class="post-meta">                    
                     <div class="post-meta__icon">
@@ -79,10 +80,10 @@ for(let i = 0; i < posts.length; i++ ) {
             <div class="post__footer">
                 <div class="likes js-likes">
                     <div class="likes__cta">
-                        <a class="like-button  js-like-button" href="#" data-postid="1">
+                        <button class="like-button  js-like-button" href="#" data-postid="${posts[i].id}">
                             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                             <span class="like-button__label">Mi Piace</span>
-                        </a>
+                        </button>
                     </div>
                     <div class="likes__counter">
                         Piace a <b id="like-counter-1" class="js-likes-counter">${posts[i].likes}</b> persone
@@ -92,3 +93,35 @@ for(let i = 0; i < posts.length; i++ ) {
         </div>`
 }
 
+// Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo.
+// Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
+
+const eleLikeButtons = document.querySelectorAll(".like-button");
+const eleCounters = document.querySelectorAll(".js-likes-counter")
+
+for (let i = 0; i< eleLikeButtons.length; i++){
+    const eleLike = eleLikeButtons[i];
+    
+    eleLike.addEventListener("click", function(){
+    
+    
+    
+      const  eleCounter = eleCounters[i];
+    
+    // il pulsate è stato già cliccato 
+    
+    if  ( eleLike.classList.contains('like-button--liked')){
+    
+        posts[i].likes -= 1
+    }
+    
+    
+    else{
+        posts[i].likes += 1
+    }
+    
+    eleLike.classList.toggle('like-button--liked');
+    eleCounter.innerHTML = `${posts[i].likes}`
+    
+    });
+    }
